@@ -11,7 +11,7 @@ import base64,cv2
 
 def runthis():
     mixer.init()
-    sound = mixer.Sound('alarm.wav')
+    sound = mixer.Sound('alarm1.wav')
 
     face = cv2.CascadeClassifier('haar/haarcascade_frontalface_alt.xml')
     leye = cv2.CascadeClassifier('haar/haarcascade_lefteye_2splits.xml')
@@ -90,6 +90,10 @@ def runthis():
         if(score>15):
             #person is feeling sleepy so we beep the alarm
             cv2.imwrite(os.path.join(path,'image.jpg'),frame)
+            cv2.putText(frame, "*****************************************ALERT!*******************************************", (10, 30),
+						cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+            cv2.putText(frame, "***************************************EYES CLOSED!*************************************", (10,710),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             try:
                 sound.play()
                 
@@ -122,7 +126,7 @@ def start():
     runthis()
     return redirect(url_for('welcome'))
 if __name__=="__main__":
-    app.run(debug=True)#,host="192.168.43.161")
+    app.run(threaded=True, host='0.0.0.0')#,host="192.168.43.161")
 
 
 app.run()
