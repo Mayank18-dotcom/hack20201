@@ -126,14 +126,8 @@ def start():
     runthis()
     return redirect(url_for('welcome'))
 if __name__=="__main__":
-    app.run(threaded=True, host='0.0.0.0')#,host="192.168.43.161")
+    app.run(debug=False, host='0.0.0.0')
 
 
-app.run()
-# runthis()
-
-# <head><title>My first Python CGI app</title></head> 
-#     <body> 
-#     <button style="background-color: lightblue;" onclick="window.location.href='http://127.0.0.1:5000/mayank';">click</button>
-#     </body> 
+app.run(debug=False, host='0.0.0.0')
 
